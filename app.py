@@ -3,6 +3,7 @@ from db import connection, cursor, get_all
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     data = get_all()
@@ -16,5 +17,5 @@ def data():
     return jsonify(data)
 
 
-
 app.run(debug=True, host='0.0.0.0', port=8000)
+
