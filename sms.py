@@ -1,16 +1,14 @@
 # Download the helper library from https://www.twilio.com/docs/python/install
 from twilio.rest import Client
-
+from config import account_sid, auth_token, from_number, to_number
 
 # Your Account Sid and Auth Token from twilio.com/console
 # DANGER! This is insecure. See http://twil.io/secure
-account_sid = 'ACd9e10ecb26c44647b719f430ae745ca8'
-auth_token = 'fed85f51ab308395d06337686a9cc72b'
+
 client = Client(account_sid, auth_token)
 
 def message(text):
-    from_number = '+12028834384'
-    to_number = '+31624852983'
+
     
     try:
         client.messages \
