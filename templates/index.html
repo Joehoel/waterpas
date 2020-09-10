@@ -1,86 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./static/lib/moment.js"></script>
+		<script src="./static/lib/Chart.js"></script>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="./static/css/flightindicators.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<title>Waterpas Data</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./static/lib/moment.js"></script>
-  <script src="./static/lib/Chart.js"></script>
-  <link rel="stylesheet" type="text/css" href="./static/css/flightindicators.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <title>Waterpas Data</title>
-</head>
-
-<body>
-  <div class="container mt-4">
-    <h1>Waterpas Data</h1>
-    <nav>
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" href="#table" data-toggle="tab" id="table-tab" href="#">Table</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" href="#chart" data-toggle="tab" id="chart-tab" href="#">Chart</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" href="#indicator" data-toggle="tab" id="indicator-tab" href="#">Indicator</a>
-        </li>
-      </ul>
-    </nav>
-    <main class="tab-content mt-4">
-      <div id="table"
-      class="tab-pane fade show active data h-50 overflow-auto table-wrapper-scroll-y custom-scroll-bar">
-      <table class="table table-hover table-sm">
-        <thead>
-          <th scope="col">ID</th>
-          <th scope="col">Pitch</th>
-          <th scope="col">Roll</th>
-          <th scope="col">Time</th>
-        </thead>
-        {% for value in data %}
-        <tr>
-          <td scope="row">
-            {{value.id}}
-          </td>
-          <td scope="row">
-            {{value.pitch}}
-          </td>
-          <td scope="row">
-            {{value.roll}}
-          </td>
-          <td scope="row">
-            {{value.time}}
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
-      </div>
-      <div id="chart" class="tab-pane fade">
-        <h1>Chart</h1>
-        <div class="grid">
-          <canvas id="pitchChart" class="grid1"></canvas>
-          <canvas id="rollChart" class="grid2"></canvas>
-        </div>
-      </div>
-      <div id="indicator" class="tab-pane fade">
-        <h1>Indicator</h1>
-        <span id="attitude"></span>
-      </div>
-    </div>
-  </main>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script src="./static/lib/FlightIndicator.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	<body>
+		<div class="container mt-4">
+			<h1>Waterpas Data</h1>
+			<nav>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a
+							class="nav-link active"
+							href="#table"
+							data-toggle="tab"
+							id="table-tab"
+							href="#"
+							>Table</a
+						>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a
+							class="nav-link"
+							href="#chart"
+							data-toggle="tab"
+							id="chart-tab"
+							href="#"
+							>Chart</a
+						>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a
+							class="nav-link"
+							href="#indicator"
+							data-toggle="tab"
+							id="indicator-tab"
+							href="#"
+							>Indicator</a
+						>
+					</li>
+				</ul>
+			</nav>
+			<main class="tab-content mt-4">
+				<div
+					id="table"
+					class="tab-pane fade show active data h-50 overflow-auto table-wrapper-scroll-y custom-scroll-bar"
+				>
+					<table class="table table-hover table-sm">
+						<thead>
+							<th scope="col">ID</th>
+							<th scope="col">Pitch</th>
+							<th scope="col">Roll</th>
+							<th scope="col">Time</th>
+						</thead>
+						{% for value in data %}
+						<tr>
+							<td scope="row">{{value.id}}</td>
+							<td scope="row">{{value.pitch}}</td>
+							<td scope="row">{{value.roll}}</td>
+							<td scope="row">{{value.time}}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+				<div id="chart" class="tab-pane fade">
+					<h1>Chart</h1>
+					<div class="grid">
+						<canvas id="pitchChart" class="grid1"></canvas>
+						<canvas id="rollChart" class="grid2"></canvas>
+					</div>
+				</div>
+				<div id="indicator" class="tab-pane fade">
+					<h1>Indicator</h1>
+					<span id="attitude"></span>
+				</div>
+			</main>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script src="./static/lib/FlightIndicator.js"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
   crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-  crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-  crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='script.js') }}"
+		></script>
+	</body>
 </html>
