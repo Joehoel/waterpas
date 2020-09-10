@@ -3,6 +3,8 @@ var count2 = 0;
 var charttemp;
 var chartvocht;
 var chartdruk;
+var pitch = [];
+var roll = [];
 
 function loop() {
 	setInterval(function () {
@@ -11,8 +13,6 @@ function loop() {
 }
 
 function fetchInfo() {
-	var pitch = [];
-	var roll = [];
 	const url = "http://localhost:8000/data";
 	fetch(url)
 		.then(response => response.json())
@@ -79,6 +79,19 @@ function drawChart(data, ctx, name) {
 		});
 	}
 }
+
+var indicator = $.flightIndicator("#attitude", "attitude", {
+	size: 200, // Sets the size in pixels of the indicator (square)
+	roll, // Roll angle in degrees for an attitude indicator
+	pitch, // Pitch angle in degrees for an attitude indicator
+	heading: 0, // Heading angle in degrees for an heading indicator
+	vario: 0, // Variometer in 1000 feets/min for the variometer indicator
+	airspeed: 0, // Air speed in knots for an air speed indicator
+	altitude: 0, // Altitude in feets for an altimeter indicator
+	pressure: 1000, // Pressure in hPa for an altimeter indicator
+	showBox: true, // Sets if the outer squared box is visible or not (true or false)
+	img_directory: "./static/img/", // The directory where the images are saved to
+});
 
 window.onload = function () {
 	fetchInfo();
