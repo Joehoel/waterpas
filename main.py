@@ -1,6 +1,7 @@
 from sense_hat import SenseHat
-import time
+from sms import message
 from db import insert
+import time
 
 sense = SenseHat()
 
@@ -13,8 +14,9 @@ r = 0
 x = [0,1]
 y = [0,1]
 
-
-sense.stick.direction_any = lambda : insert(p,r)
+def pressed():
+    message(f"Current postion: \nPitch: {p}\nRoll: {r}")
+    insert(p,r)
 
 # Draw the bubble on LED matrix
 def draw():
@@ -23,6 +25,7 @@ def draw():
     sense.set_pixel(x[1], y[0], WHITE)
     sense.set_pixel(x[1], y[1], WHITE)
 
+sense.stick.direction_any = pressed 
 # Loop
 while True:
 
