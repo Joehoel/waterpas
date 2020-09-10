@@ -90,7 +90,7 @@ while True:
     print("pitch: ", p, "roll: ", r)
     
     sense.clear()
-    if ((p < 10 and p > 0) or (p < 360 and p > 350)) and (r < 10 and r > 0) or (r < 360 and r > 350):
+    if ((p < 10 and p > 0) or (p < 360 and p > 350) or (p == 0) or (p == 360)) and ((r < 10 and r > 0) or (r < 360 and r > 350) or (r == 0) or (r == 360)):
         xv = 0
         yv = 0
         while xv < 8:

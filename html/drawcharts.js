@@ -1,19 +1,46 @@
+var pitch = [];
+var pitchraw= [];
+var roll = [];
+var rollraw = [];
+
+
+var indicator = $.flightIndicator('#attitude', 'attitude');
 
 var count = 0;
 var count2 = 0;
 var verplaatsingChart;
 var pointsChart;
+
+
 function loop() {
+    let i = 0;
     setInterval(function() {
-    fetchInfo();
+        indicator.setRoll(rollraw[i]);			
+        indicator.setPitch(pitchraw[i]);
+        i++
+        if (i === 19) {
+            i = 0;
+        }
+    }, 10 * 10); 
+    setInterval(function() {
+        fetchInfo();
     }, 10 * 100); 
 }
 
+
+
+setInterval(function() {
+    console.log(pitchraw)
+    // Attitude update
+    
+}, 10 * 100);
+
+
 function fetchInfo() {
-    var pitch = [];
-    var pitchraw= [];
-    var roll = [];
-    var rollraw = [];
+    pitch = [];
+    pitchraw= [];
+    roll = [];
+    rollraw = [];
     const url =  "http://10.80.17.1/throwdata.py";
     fetch(url)        
     .then(response => response.json())
